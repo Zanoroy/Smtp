@@ -83,7 +83,8 @@ internal final class InboundSendEmailHandler: ChannelInboundHandler {
             } else {
                 switch self.serverConfiguration.signInMethod {
                 case .credentials(_, _):
-                    self.send(context: context, command: .beginAuthentication)
+                    // self.send(context: context, command: .beginAuthentication)
+                    self.send(context: context, command: .mailFrom(self.email.from.address))
                     self.currentlyWaitingFor = .okAfterAuthBegin
                 case .anonymous:
                     self.send(context: context, command: .mailFrom(self.email.from.address))
